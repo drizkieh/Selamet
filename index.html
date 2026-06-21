@@ -761,7 +761,8 @@
   <div class="couple-grid">
     <div class="person-card reveal-left">
       <div class="person-photo">
-        <div class="person-photo-inner">R</div>
+        <!-- GANTI: ubah "foto-titin.jpg" dengan nama file foto Titin -->
+        <img src="foto-titin.jpg" alt="Titin" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
       </div>
       <h3 class="person-name">Titin</h3>
       <p class="person-child">Putri Pertama dari</p>
@@ -774,7 +775,8 @@
 
     <div class="person-card reveal-right">
       <div class="person-photo">
-        <div class="person-photo-inner">A</div>
+        <!-- GANTI: ubah "foto-devry.jpg" dengan nama file foto Devry -->
+        <img src="foto-devry.jpg" alt="Devry" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
       </div>
       <h3 class="person-name">Devry</h3>
       <p class="person-child">Putra Pertama dari</p>
@@ -901,46 +903,47 @@
   <div class="gallery-grid reveal">
     <!-- Item 1 - tall -->
     <div class="gallery-item tall">
-      <div class="gallery-inner" style="background:linear-gradient(135deg,#3D2B1F,#6B4C38,#2A1A0E);">
-        <svg width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="30" r="25" stroke="#C9A84C" stroke-width="0.5" fill="none"/><path d="M20 30 Q30 10 40 30 Q30 50 20 30Z" stroke="#C9A84C" stroke-width="0.5" fill="none"/></svg>
+      <div class="gallery-inner">
+        <!-- GANTI: ubah "galeri-1.jpg" dengan nama file foto galeri 1 -->
+        <img src="galeri-1.jpg" alt="Foto 1" style="width:100%;height:100%;object-fit:cover;">
       </div>
     </div>
     <!-- Item 2 -->
     <div class="gallery-item">
-      <div class="gallery-inner" style="background:linear-gradient(225deg,#4A2C20,#2A1A0E);">
-        <svg width="50" height="50" viewBox="0 0 60 60"><rect x="15" y="15" width="30" height="30" stroke="#C9A84C" stroke-width="0.5" fill="none" transform="rotate(45 30 30)"/></svg>
+      <div class="gallery-inner">
+        <!-- GANTI: ubah "galeri-2.jpg" dengan nama file foto galeri 2 -->
+        <img src="galeri-2.jpg" alt="Foto 2" style="width:100%;height:100%;object-fit:cover;">
       </div>
     </div>
     <!-- Item 3 -->
     <div class="gallery-item">
-      <div class="gallery-inner" style="background:linear-gradient(45deg,#251A12,#5C3D28);">
-        <svg width="50" height="50" viewBox="0 0 60 60"><path d="M30 5 L37 22 L55 22 L41 34 L46 52 L30 41 L14 52 L19 34 L5 22 L23 22Z" stroke="#C9A84C" stroke-width="0.5" fill="none"/></svg>
+      <div class="gallery-inner">
+        <!-- GANTI: ubah "galeri-3.jpg" dengan nama file foto galeri 3 -->
+        <img src="galeri-3.jpg" alt="Foto 3" style="width:100%;height:100%;object-fit:cover;">
       </div>
     </div>
     <!-- Item 4 - wide -->
     <div class="gallery-item wide">
-      <div class="gallery-inner" style="background:linear-gradient(90deg,#3D2B1F,#1A1410,#3D2B1F);">
-        <svg width="80" height="40" viewBox="0 0 120 60">
-          <text x="60" y="40" font-family="Georgia,serif" font-style="italic" font-size="28" fill="#C9A84C" text-anchor="middle" opacity="0.4">Titin &amp; Devry</text>
-        </svg>
+      <div class="gallery-inner">
+        <!-- GANTI: ubah "galeri-4.jpg" dengan nama file foto galeri 4 -->
+        <img src="galeri-4.jpg" alt="Foto 4" style="width:100%;height:100%;object-fit:cover;">
       </div>
     </div>
     <!-- Item 5 -->
     <div class="gallery-item">
-      <div class="gallery-inner" style="background:linear-gradient(315deg,#2A1A0E,#4A3020);">
-        <svg width="50" height="50" viewBox="0 0 60 60"><circle cx="30" cy="30" r="20" stroke="#C9A84C" stroke-width="0.5" fill="none"/><circle cx="30" cy="30" r="12" stroke="#C9A84C" stroke-width="0.3" fill="none"/><circle cx="30" cy="30" r="4" fill="#C9A84C" opacity="0.4"/></svg>
+      <div class="gallery-inner">
+        <!-- GANTI: ubah "galeri-5.jpg" dengan nama file foto galeri 5 -->
+        <img src="galeri-5.jpg" alt="Foto 5" style="width:100%;height:100%;object-fit:cover;">
       </div>
     </div>
     <!-- Item 6 -->
     <div class="gallery-item">
-      <div class="gallery-inner" style="background:linear-gradient(180deg,#3D2B1F,#251A12);">
-        <svg width="50" height="50" viewBox="0 0 60 60"><path d="M10 30 Q30 5 50 30 Q30 55 10 30Z" stroke="#C9A84C" stroke-width="0.5" fill="none"/></svg>
+      <div class="gallery-inner">
+        <!-- GANTI: ubah "galeri-6.jpg" dengan nama file foto galeri 6 -->
+        <img src="galeri-6.jpg" alt="Foto 6" style="width:100%;height:100%;object-fit:cover;">
       </div>
     </div>
   </div>
-  <p style="text-align:center;margin-top:16px;font-size:12px;color:var(--gold);opacity:0.4;letter-spacing:3px;font-family:'Cinzel',serif;">
-    FOTO AKAN TERSEDIA SEGERA
-  </p>
 </section>
 
 <div class="full-divider"></div>
@@ -1091,10 +1094,16 @@ const bgMusic = document.getElementById('bg-music');
 bgMusic.volume = 0.4;
 
 function initAudio() {
-  // Mulai musik otomatis saat user pertama kali klik/tap
-  document.addEventListener('click', () => {
-    if (!isPlaying) startAudio();
-  }, { once: true });
+  // Coba autoplay langsung
+  bgMusic.play().then(() => {
+    isPlaying = true;
+    document.getElementById('music-btn').classList.remove('paused');
+  }).catch(() => {
+    // Kalau diblokir browser, tunggu klik pertama
+    document.addEventListener('click', () => {
+      if (!isPlaying) startAudio();
+    }, { once: true });
+  });
 }
 
 function startAudio() {
