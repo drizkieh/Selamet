@@ -1129,20 +1129,36 @@ function toggleMusic() {
 
 // ── RSVP ─────────────────────────────────────────
 function submitRSVP() {
-  const name = document.getElementById('rsvp-name').value.trim();
-  const attend = document.getElementById('rsvp-attend').value;
-  if (!name) { showToast('Mohon isi nama Anda'); return; }
-  if (!attend) { showToast('Mohon pilih konfirmasi kehadiran'); return; }
-  showToast('Terima kasih, ' + name + '! 💛');
-  document.getElementById('rsvp-name').value = '';
-  document.getElementById('rsvp-phone').value = '';
-  document.getElementById('rsvp-attend').value = '';
-  document.getElementById('rsvp-guests').value = '';
-  document.getElementById('rsvp-message').value = '';
+  const name    = document.getElementById('rsvp-name').value.trim();
+  const phone   = document.getElementById('rsvp-phone').value.trim();
+  const attend  = document.getElementById('rsvp-attend').value;
+  const guests  = document.getElementById('rsvp-guests').value || '1';
+  const message = document.getElementById('rsvp-message').value.trim();
 
-  const nomorWA = '6282119290176'; // ← Ganti dengan nomor WA kamu
-  const teks = `Halo, saya ${name} konfirmasi kehadiran: ${attend}`;
-  setTimeout(() => window.open(`https://wa.me/${nomorWA}?text=${encodeURIComponent(teks)}`, '_blank'), 800);
+  if (!name)   { showToast('Mohon isi nama Anda'); return; }
+  if (!attend) { showToast('Mohon pilih konfirmasi kehadiran'); return; }
+
+  showToast('Mengirim konfirmasi... 💛');
+
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwXXpCM35Xd-Tc-m7m0DRbI3NcyXzlpkAve4bg4ATgddKtY5KaiLMUFfG_UssgYt68l/exec';
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, phone, attend, guests, message })
+  })
+  .then(() => {
+    showToast('Terima kasih, ' + name + '! 💛');
+    document.getElementById('rsvp-name').value    = '';
+    document.getElementById('rsvp-phone').value   = '';
+    document.getElementById('rsvp-attend').value  = '';
+    document.getElementById('rsvp-guests').value  = '';
+    document.getElementById('rsvp-message').value = '';
+  })
+  .catch(() => {
+    showToast('Gagal mengirim, coba lagi.');
+  });
 }
 
 function showToast(msg) {
